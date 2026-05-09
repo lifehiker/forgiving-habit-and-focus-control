@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 
 import { LoginRequestForm } from "@/components/login-request-form";
-import { verifyLoginCode } from "@/lib/actions/auth";
 import { getCurrentUser } from "@/lib/session";
 import { buildMetadata } from "@/lib/seo";
 
@@ -23,6 +22,10 @@ export default async function LoginPage({
   const params = await searchParams;
   const email = typeof params.email === "string" ? params.email : undefined;
   const error = params.error === "invalid-code" ? "That code is invalid or expired." : null;
+  const requestError =
+    typeof params.requestError === "string" ? params.requestError : null;
+  const previewCode =
+    typeof params.previewCode === "string" ? params.previewCode : null;
 
   return (
     <div className="shell grid gap-8 py-8 md:grid-cols-[1.1fr_0.9fr]">
@@ -45,8 +48,12 @@ export default async function LoginPage({
             Google sign-in requires credentials
           </button>
         </div>
-        <LoginRequestForm email={email} />
-        <form action={verifyLoginCode} className="space-y-4 rounded-[1.75rem] border border-[var(--border)] bg-white/80 p-6">
+        <LoginRequestForm
+          email={email}
+          previewCode={previewCode}
+          requestError={requestError}
+        />
+        <form action="/api/forms/auth/verify" className="space-y-4 rounded-[1.75rem] border border-[var(--border)] bg-white/80 p-6" method="post">
           <div>
             <label className="mb-2 block text-sm font-semibold" htmlFor="verify-email">
               Email

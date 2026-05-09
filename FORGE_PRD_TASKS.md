@@ -1,6 +1,6 @@
 # FORGE PRD Tasks
 
-Last updated: 2026-05-09 (final QA verification)
+Last updated: 2026-05-09 (deployment repair + final QA verification)
 
 ## Phase 1: Foundation
 
@@ -54,15 +54,15 @@ Last updated: 2026-05-09 (final QA verification)
 - [x] Free-vs-Pro habit/focus/blocklist gating exists.
 - [x] Verify all gating behavior matches PRD language and graceful upgrade paths.
 - [x] Improve workflow feedback where current forms/actions fail silently or ungracefully.
-- [x] Replace hard server-action failures on habit/focus/blocklist/onboarding edge cases with user-facing in-page error states.
+- [x] Replace deployment-sensitive server-action form posts with stable POST route handlers to eliminate action-ID skew failures.
 
 ## Phase 5: APIs, Server Actions, And Extension
 
-- [x] Habit server actions exist.
-- [x] Focus server actions exist.
-- [x] Billing server action exists.
-- [x] Settings server action exists.
-- [x] Extension server actions exist.
+- [x] Habit mutation endpoints exist.
+- [x] Focus mutation endpoints exist.
+- [x] Billing mutation endpoint exists.
+- [x] Settings mutation endpoint exists.
+- [x] Extension/blocklist mutation endpoint exists.
 - [x] Extension health API exists.
 - [x] Extension session-state API exists.
 - [x] Restart-nudge job route exists.
@@ -106,6 +106,7 @@ Last updated: 2026-05-09 (final QA verification)
 
 - [x] Run `npm run build` and fix all build errors.
 - [x] Start the dev server and confirm it boots without crashing.
+- [x] Start the standalone production server and confirm it boots without crashing.
 - [x] Smoke-test primary routes.
 - [x] Test core interactivity: auth, onboarding, habits, restart flow, focus sessions, billing switch, settings, blocklist, extension API.
 - [x] Review pages/components visually and fix polish issues found during testing.
@@ -117,7 +118,7 @@ Last updated: 2026-05-09 (final QA verification)
 ## Remaining notes
 
 - Final QA fixes completed after route verification:
-  - Added a working session-scoped emergency override path to the Chrome extension scaffold for free-tier blocking behavior.
-  - Added mobile navigation rows to the app and marketing shells so core pages remain usable on small screens.
-  - Expanded onboarding timezone selection from a short US-only list to a broad IANA timezone list.
+  - Replaced user-facing Server Action form submissions with route-handler POST endpoints after reproducing the deployment-time action lookup failures locally.
+  - Added a stable `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` and optional `deploymentId` wiring for self-hosted Next.js deployment safety.
+  - Corrected local-vs-standalone file-store path resolution so production-style standalone runs and repo-root runs use the intended data directory.
 - `docker build .` was attempted and failed because Docker daemon access to `/var/run/docker.sock` is blocked for the current user in this environment.

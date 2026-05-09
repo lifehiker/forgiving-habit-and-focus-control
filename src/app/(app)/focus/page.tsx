@@ -1,5 +1,4 @@
 import { FocusCountdown } from "@/components/focus/focus-countdown";
-import { completeFocusSessionAction, startFocusSessionAction } from "@/lib/actions/focus";
 import { getActiveFocusSession, getTodayHabitStatus } from "@/lib/app";
 import { requireUser } from "@/lib/session";
 import { buildMetadata } from "@/lib/seo";
@@ -45,7 +44,8 @@ export default async function FocusPage({
       </section>
 
       <div className="grid gap-6 xl:grid-cols-[0.9fr_1.1fr]">
-        <form action={startFocusSessionAction} className="glass rounded-[1.85rem] p-6">
+        <form action="/api/forms/focus" className="glass rounded-[1.85rem] p-6" method="post">
+          <input name="intent" type="hidden" value="start" />
           <p className="eyebrow text-xs text-[var(--muted-foreground)]">Start a block</p>
           <div className="mt-5 space-y-4">
             <div>
@@ -124,7 +124,8 @@ export default async function FocusPage({
                   Ends at {new Date(activeSession.endsAt).toLocaleString()} · {activeSession.durationMinutes} minutes
                 </p>
               </div>
-              <form action={completeFocusSessionAction}>
+              <form action="/api/forms/focus" method="post">
+                <input name="intent" type="hidden" value="complete" />
                 <input name="sessionId" type="hidden" value={activeSession.id} />
                 <button className="button-primary" type="submit">
                   Mark session complete

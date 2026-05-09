@@ -1,4 +1,3 @@
-import { archiveHabitAction, createHabitAction } from "@/lib/actions/habits";
 import { getTodayHabitStatus } from "@/lib/app";
 import { requireUser } from "@/lib/session";
 import { buildMetadata } from "@/lib/seo";
@@ -38,7 +37,9 @@ export default async function HabitsPage({
                     {habit.category} · {habit.cadenceType === "daily" ? "Daily" : `${habit.targetPerWeek ?? 3}x / week`}
                   </p>
                 </div>
-                <form action={archiveHabitAction}>
+                <form action="/api/forms/habits" method="post">
+                  <input name="intent" type="hidden" value="archive" />
+                  <input name="returnTo" type="hidden" value="/habits" />
                   <input name="habitId" type="hidden" value={habit.id} />
                   <button className="button-ghost px-4 py-2 text-sm" type="submit">
                     Archive
@@ -50,7 +51,9 @@ export default async function HabitsPage({
         </div>
       </section>
 
-      <form action={createHabitAction} className="rounded-[1.9rem] border border-[var(--border)] bg-[var(--card-strong)] p-6 shadow-[var(--shadow)]">
+      <form action="/api/forms/habits" className="rounded-[1.9rem] border border-[var(--border)] bg-[var(--card-strong)] p-6 shadow-[var(--shadow)]" method="post">
+        <input name="intent" type="hidden" value="create" />
+        <input name="returnTo" type="hidden" value="/habits" />
         <p className="eyebrow text-xs text-[var(--muted-foreground)]">New habit</p>
         <div className="mt-5 space-y-4">
           <div>

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { logout } from "@/lib/actions/auth";
 import type { AppUser } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -61,7 +60,7 @@ export function AppShell({
                   {user.subscription.plan.replace("-", " ")}
                 </p>
               </div>
-              <form action={logout}>
+              <form action="/api/forms/auth/logout" method="post">
                 <button className="button-ghost text-sm" type="submit">
                   Sign out
                 </button>

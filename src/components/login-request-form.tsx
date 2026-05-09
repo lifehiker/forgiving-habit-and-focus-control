@@ -1,16 +1,14 @@
-"use client";
-
-import { useActionState } from "react";
-
-import { requestLoginCode } from "@/lib/actions/auth";
-
-const initialState: { error?: string; previewCode?: string } = {};
-
-export function LoginRequestForm({ email }: { email?: string }) {
-  const [state, formAction, pending] = useActionState(requestLoginCode, initialState);
-
+export function LoginRequestForm({
+  email,
+  requestError,
+  previewCode,
+}: {
+  email?: string;
+  requestError?: string | null;
+  previewCode?: string | null;
+}) {
   return (
-    <form action={formAction} className="space-y-4 rounded-[1.75rem] border border-[var(--border)] bg-white/80 p-6">
+    <form action="/api/forms/auth/request-code" className="space-y-4 rounded-[1.75rem] border border-[var(--border)] bg-white/80 p-6" method="post">
       <div>
         <label className="mb-2 block text-sm font-semibold" htmlFor="login-name">
           Name
@@ -38,13 +36,13 @@ export function LoginRequestForm({ email }: { email?: string }) {
           type="email"
         />
       </div>
-      <button className="button-primary w-full" disabled={pending} type="submit">
-        {pending ? "Sending code..." : "Send sign-in code"}
+      <button className="button-primary w-full" type="submit">
+        Send sign-in code
       </button>
-      {state.error ? <p className="text-sm text-[var(--danger)]">{state.error}</p> : null}
-      {state.previewCode ? (
+      {requestError ? <p className="text-sm text-[var(--danger)]">{requestError}</p> : null}
+      {previewCode ? (
         <div className="rounded-[1.25rem] bg-[var(--primary-soft)] p-4 text-sm text-[var(--primary-strong)]">
-          Local preview code: <span className="font-semibold">{state.previewCode}</span>
+          Local preview code: <span className="font-semibold">{previewCode}</span>
         </div>
       ) : null}
     </form>

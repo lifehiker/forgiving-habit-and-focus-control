@@ -1,6 +1,5 @@
 import { redirect } from "next/navigation";
 
-import { completeOnboardingAction } from "@/lib/actions/settings";
 import { starterHabitTemplates } from "@/lib/habit-templates";
 import { requireUser } from "@/lib/session";
 import { buildMetadata } from "@/lib/seo";
@@ -52,7 +51,7 @@ export default async function OnboardingPage({
           Pick a few starter habits, choose your timezone and daily reset time, and keep the setup light enough that you actually start.
         </p>
       </section>
-      <form action={completeOnboardingAction} className="glass space-y-5 rounded-[2rem] p-6">
+      <form action="/api/forms/onboarding" className="glass space-y-5 rounded-[2rem] p-6" method="post">
         {error ? (
           <div className="rounded-[1.2rem] border border-[var(--danger)]/20 bg-[var(--accent-soft)] p-4 text-sm text-[var(--danger)]">
             {error}

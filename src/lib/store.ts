@@ -3,7 +3,38 @@ import path from "node:path";
 
 import type { AppData } from "@/lib/types";
 
-const dataDir = path.join(process.cwd(), "data");
+function resolveDataDir() {
+  const configuredDir = process.env.APP_DATA_DIR;
+  if (configuredDir) {
+    return configuredDir;
+  }
+
+  const repoRootDataDir = path.join(
+    /* turbopackIgnore: true */ process.cwd(),
+    "..",
+    "..",
+    "data",
+  );
+  if (
+    process.cwd().includes(`${path.sep}.next${path.sep}standalone`) &&
+    fs.existsSync(repoRootDataDir)
+  ) {
+    return repoRootDataDir;
+  }
+
+  const cwdDataDir = path.join(/* turbopackIgnore: true */ process.cwd(), "data");
+  if (fs.existsSync(cwdDataDir)) {
+    return cwdDataDir;
+  }
+
+  if (fs.existsSync(repoRootDataDir)) {
+    return repoRootDataDir;
+  }
+
+  return cwdDataDir;
+}
+
+const dataDir = resolveDataDir();
 const dataFile = path.join(dataDir, "app-data.json");
 
 const emptyData: AppData = {

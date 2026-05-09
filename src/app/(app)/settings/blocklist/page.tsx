@@ -1,4 +1,3 @@
-import { addBlockedDomainAction, generateExtensionTokenAction, removeBlockedDomainAction } from "@/lib/actions/extension";
 import { getActiveBlockedDomains, getLatestExtensionToken } from "@/lib/app";
 import { requireUser } from "@/lib/session";
 import { buildMetadata } from "@/lib/seo";
@@ -33,7 +32,8 @@ export default async function BlocklistPage({
             domains.map((domain) => (
               <div key={domain.id} className="flex items-center justify-between gap-4 rounded-[1.25rem] border border-[var(--line)] bg-white/70 p-4">
                 <span className="font-semibold">{domain.domain}</span>
-                <form action={removeBlockedDomainAction}>
+                <form action="/api/forms/blocklist" method="post">
+                  <input name="intent" type="hidden" value="remove" />
                   <input name="domainId" type="hidden" value={domain.id} />
                   <button className="button-ghost px-4 py-2 text-sm" type="submit">
                     Remove
@@ -48,7 +48,8 @@ export default async function BlocklistPage({
       </section>
 
       <div className="space-y-6">
-        <form action={addBlockedDomainAction} className="rounded-[1.85rem] border border-[var(--border)] bg-[var(--card-strong)] p-6 shadow-[var(--shadow)]">
+        <form action="/api/forms/blocklist" className="rounded-[1.85rem] border border-[var(--border)] bg-[var(--card-strong)] p-6 shadow-[var(--shadow)]" method="post">
+          <input name="intent" type="hidden" value="add" />
           <p className="eyebrow text-xs text-[var(--muted-foreground)]">Add domain</p>
           <div className="mt-5 flex flex-col gap-3 sm:flex-row">
             <input className="field" name="domain" placeholder="youtube.com" required type="text" />
@@ -68,7 +69,8 @@ export default async function BlocklistPage({
           <p className="mt-4 rounded-[1.25rem] border border-[var(--line)] bg-white/70 p-4 font-mono text-sm">
             {token ?? "Generate a token to connect the extension."}
           </p>
-          <form action={generateExtensionTokenAction} className="mt-4">
+          <form action="/api/forms/blocklist" className="mt-4" method="post">
+            <input name="intent" type="hidden" value="generate-token" />
             <button className="button-primary" type="submit">
               Generate token
             </button>

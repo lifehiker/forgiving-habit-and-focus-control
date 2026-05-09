@@ -1,6 +1,5 @@
 import Link from "next/link";
 
-import { updateProfileAction } from "@/lib/actions/settings";
 import { getLatestExtensionToken } from "@/lib/app";
 import { readStore } from "@/lib/store";
 import { requireUser } from "@/lib/session";
@@ -24,7 +23,7 @@ export default async function SettingsPage({
 
   return (
     <div className="grid gap-6 xl:grid-cols-[1fr_0.95fr]">
-      <form action={updateProfileAction} className="glass rounded-[1.85rem] p-6">
+      <form action="/api/forms/settings" className="glass rounded-[1.85rem] p-6" method="post">
         {error ? (
           <div className="mb-5 rounded-[1.2rem] border border-[var(--danger)]/20 bg-[var(--accent-soft)] p-4 text-sm text-[var(--danger)]">
             {error}

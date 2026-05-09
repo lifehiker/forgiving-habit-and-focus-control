@@ -1,4 +1,3 @@
-import { completeHabitForToday } from "@/lib/actions/habits";
 import type { Habit } from "@/lib/types";
 
 export function TodayHabitList({
@@ -36,7 +35,9 @@ export function TodayHabitList({
                   Completed
                 </span>
               ) : (
-                <form action={completeHabitForToday}>
+                <form action="/api/forms/habits" method="post">
+                  <input type="hidden" name="intent" value="complete" />
+                  <input type="hidden" name="returnTo" value="/dashboard" />
                   <input type="hidden" name="habitId" value={habit.id} />
                   <button className="button-primary px-4 py-2 text-sm" type="submit">
                     Mark complete

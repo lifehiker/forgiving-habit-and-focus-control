@@ -1,4 +1,3 @@
-import { restartHabitAction } from "@/lib/actions/habits";
 import type { Habit, HabitLapse } from "@/lib/types";
 
 const reasons = [
@@ -27,9 +26,12 @@ export function RestartPromptCard({
             return (
               <form
                 key={lapse.id}
-                action={restartHabitAction}
+                action="/api/forms/habits"
                 className="rounded-[1.4rem] border border-[var(--line)] bg-[var(--accent-soft)] p-4"
+                method="post"
               >
+                <input type="hidden" name="intent" value="restart" />
+                <input type="hidden" name="returnTo" value="/dashboard" />
                 <input type="hidden" name="habitId" value={lapse.habitId} />
                 <p className="font-semibold">{habit?.name ?? "Habit"}</p>
                 <p className="mt-1 text-sm text-[var(--muted-foreground)]">

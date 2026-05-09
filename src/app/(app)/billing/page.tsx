@@ -1,4 +1,3 @@
-import { updatePlanAction } from "@/lib/actions/billing";
 import { getCurrentRenewalLabel } from "@/lib/app";
 import { requireUser } from "@/lib/session";
 import { buildMetadata } from "@/lib/seo";
@@ -31,7 +30,7 @@ export default async function BillingPage() {
       </section>
       <div className="grid gap-4 md:grid-cols-3">
         {(["free", "pro-monthly", "pro-yearly"] as const).map((plan) => (
-          <form key={plan} action={updatePlanAction} className="rounded-[1.7rem] border border-[var(--border)] bg-[var(--card-strong)] p-5 shadow-[var(--shadow)]">
+          <form key={plan} action="/api/forms/billing" className="rounded-[1.7rem] border border-[var(--border)] bg-[var(--card-strong)] p-5 shadow-[var(--shadow)]" method="post">
             <input name="plan" type="hidden" value={plan} />
             <p className="eyebrow text-xs text-[var(--muted-foreground)]">{planLabels[plan]}</p>
             <p className="mt-4 text-sm leading-7 text-[var(--muted-foreground)]">
