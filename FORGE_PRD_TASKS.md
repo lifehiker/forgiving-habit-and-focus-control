@@ -1,6 +1,6 @@
 # FORGE PRD Tasks
 
-Last updated: 2026-05-09 (post-runtime verification)
+Last updated: 2026-05-09 (final QA verification)
 
 ## Phase 1: Foundation
 
@@ -116,4 +116,8 @@ Last updated: 2026-05-09 (post-runtime verification)
 
 ## Remaining notes
 
+- Final QA fixes completed after route verification:
+  - Added a working session-scoped emergency override path to the Chrome extension scaffold for free-tier blocking behavior.
+  - Added mobile navigation rows to the app and marketing shells so core pages remain usable on small screens.
+  - Expanded onboarding timezone selection from a short US-only list to a broad IANA timezone list.
 - `docker build .` was attempted and failed because Docker daemon access to `/var/run/docker.sock` is blocked for the current user in this environment.

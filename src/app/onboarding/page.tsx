@@ -10,7 +10,25 @@ export const metadata = buildMetadata({
   path: "/onboarding",
 });
 
-const timezoneOptions = ["UTC", "America/New_York", "America/Chicago", "America/Denver", "America/Los_Angeles"];
+const preferredTimezones = [
+  "UTC",
+  "America/New_York",
+  "America/Chicago",
+  "America/Denver",
+  "America/Los_Angeles",
+  "Europe/London",
+  "Europe/Berlin",
+  "Asia/Kolkata",
+  "Asia/Tokyo",
+  "Australia/Sydney",
+];
+
+const timezoneOptions = Array.from(
+  new Set([
+    ...preferredTimezones,
+    ...Intl.supportedValuesOf("timeZone"),
+  ]),
+);
 
 export default async function OnboardingPage({
   searchParams,

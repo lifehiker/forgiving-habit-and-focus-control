@@ -14,7 +14,14 @@
       "lastActiveAt": "2026-05-09T13:50:13.990Z"
     }
   ],
-  "sessions": [],
+  "sessions": [
+    {
+      "token": "sess_smoketest_74da373a1b70",
+      "userId": "user_demo",
+      "createdAt": "2026-05-09T14:21:00.647Z",
+      "expiresAt": "2026-05-10T14:21:00.647Z"
+    }
+  ],
   "loginCodes": [
     {
       "id": "code_fa9abc2a55ab",
@@ -156,6 +163,13 @@
       "userId": "user_demo",
       "lapseDate": "2026-05-08",
       "createdAt": "2026-05-08T12:00:00.000Z"
+    },
+    {
+      "id": "efd9dbdd-e0bc-4234-a545-b1200c7074ba",
+      "habitId": "habit_review",
+      "userId": "user_demo",
+      "lapseDate": "2026-05-03",
+      "createdAt": "2026-05-09T14:21:11.077Z"
     }
   ],
   "focusSessions": [
@@ -205,7 +219,7 @@
       "userId": "user_demo",
       "token": "ext_demo_token",
       "createdAt": "2026-05-08T15:00:00.000Z",
-      "lastUsedAt": "2026-05-09T13:50:40.028Z"
+      "lastUsedAt": "2026-05-09T14:21:10.471Z"
     }
   ],
   "analyticsEvents": [

@@ -1,6 +1,6 @@
 # FORGE Completion Audit
 
-Last updated: 2026-05-09 (post-runtime verification)
+Last updated: 2026-05-09 (final QA verification)
 
 ## Foundation And Storage
 
@@ -15,6 +15,7 @@ Last updated: 2026-05-09 (post-runtime verification)
 - Session lookup and route protection: [src/lib/session.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/session.ts), [src/app/(app)/layout.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(app)/layout.tsx)
 - Login page with Google credential fallback UI: [src/app/login/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/login/page.tsx), [src/components/login-request-form.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/components/login-request-form.tsx)
 - Onboarding UI and persistence: [src/app/onboarding/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/onboarding/page.tsx), [src/lib/actions/settings.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/actions/settings.ts), [src/lib/habit-templates.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/habit-templates.ts)
+- Broad timezone selection coverage for onboarding: [src/app/onboarding/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/onboarding/page.tsx)
 
 ## Recovery-First Habits
 
@@ -32,6 +33,7 @@ Last updated: 2026-05-09 (post-runtime verification)
 - Blocklist management and extension token UI: [src/app/(app)/settings/blocklist/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(app)/settings/blocklist/page.tsx), [src/lib/actions/extension.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/actions/extension.ts)
 - Extension APIs: [src/app/api/extension/health/route.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/api/extension/health/route.ts), [src/app/api/extension/state/route.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/api/extension/state/route.ts)
 - Manifest V3 scaffold with polling, blocked interstitial, and override delay: [extension/manifest.json](/opt/forge-builds/forgiving-habit-and-focus-control/extension/manifest.json), [extension/service-worker.js](/opt/forge-builds/forgiving-habit-and-focus-control/extension/service-worker.js), [extension/popup.html](/opt/forge-builds/forgiving-habit-and-focus-control/extension/popup.html), [extension/popup.js](/opt/forge-builds/forgiving-habit-and-focus-control/extension/popup.js), [extension/blocked.html](/opt/forge-builds/forgiving-habit-and-focus-control/extension/blocked.html), [extension/blocked.js](/opt/forge-builds/forgiving-habit-and-focus-control/extension/blocked.js), [extension/README.md](/opt/forge-builds/forgiving-habit-and-focus-control/extension/README.md)
+- Session-scoped emergency override handling for free-tier blocking: [extension/service-worker.js](/opt/forge-builds/forgiving-habit-and-focus-control/extension/service-worker.js), [extension/blocked.js](/opt/forge-builds/forgiving-habit-and-focus-control/extension/blocked.js)
 
 ## History, Billing, Settings, Email, And Analytics
 
@@ -46,6 +48,7 @@ Last updated: 2026-05-09 (post-runtime verification)
 ## Marketing, SEO, And Content
 
 - Homepage and marketing shell: [src/app/(marketing)/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(marketing)/page.tsx), [src/components/marketing-shell.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/components/marketing-shell.tsx)
+- Mobile navigation coverage for app and marketing routes: [src/components/app-shell.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/components/app-shell.tsx), [src/components/marketing-shell.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/components/marketing-shell.tsx)
 - Pricing: [src/app/(marketing)/pricing/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(marketing)/pricing/page.tsx)
 - SEO landers: [src/app/(marketing)/forgiving-habit-tracker/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(marketing)/forgiving-habit-tracker/page.tsx), [src/app/(marketing)/habit-tracker-no-streak/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(marketing)/habit-tracker-no-streak/page.tsx), [src/app/(marketing)/focus-session-app/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(marketing)/focus-session-app/page.tsx), [src/app/(marketing)/website-blocker-for-deep-work/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(marketing)/website-blocker-for-deep-work/page.tsx), [src/app/(marketing)/habit-tracker-adhd/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(marketing)/habit-tracker-adhd/page.tsx), [src/app/(marketing)/_components/seo-landing-page-view.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(marketing)/_components/seo-landing-page-view.tsx)
 - Blog index, detail route, and content library: [src/app/(marketing)/blog/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(marketing)/blog/page.tsx), [src/app/(marketing)/blog/[slug]/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(marketing)/blog/[slug]/page.tsx), [src/lib/content.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/content.ts)

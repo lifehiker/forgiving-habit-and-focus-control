@@ -4,6 +4,7 @@ const label = params.get("label");
 const endsAt = params.get("endsAt");
 const allowOverride = params.get("allowOverride") === "true";
 const strictMode = params.get("strictMode") === "true";
+const originalUrl = params.get("originalUrl");
 
 document.getElementById("title").textContent = `You committed to focus instead of ${domain}.`;
 document.getElementById("detail").textContent = `Session: ${label}. Block active until ${new Date(endsAt).toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}.`;
@@ -30,7 +31,14 @@ if (allowOverride && !strictMode) {
 
   overrideButton.addEventListener("click", () => {
     if (!overrideButton.disabled) {
-      window.history.back();
+      chrome.runtime.sendMessage({ type: "allowOverride", domain }, (response) => {
+        if (response?.ok && originalUrl) {
+          window.location.replace(originalUrl);
+          return;
+        }
+
+        overrideButton.textContent = "Override unavailable";
+      });
     }
   });
 }
