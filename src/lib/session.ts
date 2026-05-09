@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import type { NextResponse } from "next/server";
 
 import { getUserSubscription } from "@/lib/billing";
 import { mutateStore, readStore } from "@/lib/store";
@@ -20,14 +21,16 @@ export async function setSession(userId: string) {
   });
 
   const cookieStore = await cookies();
-  cookieStore.set(cookieName, token, {
-    httpOnly: true,
-    sameSite: "lax",
-    path: "/",
-  });
+  cookieStore.set(cookieName, token, getSessionCookieOptions());
+
+  return token;
 }
 
-export async function clearSession() {
+export async function applySessionCookie(response: NextResponse, token: string) {
+  response.cookies.set(cookieName, token, getSessionCookieOptions());
+}
+
+export async function clearSession(response?: NextResponse) {
   const cookieStore = await cookies();
   const token = cookieStore.get(cookieName)?.value;
   if (token) {
@@ -36,6 +39,10 @@ export async function clearSession() {
     });
   }
   cookieStore.delete(cookieName);
+
+  if (response) {
+    response.cookies.delete(cookieName);
+  }
 }
 
 export async function getCurrentUser(): Promise<AppUser | null> {
@@ -110,4 +117,12 @@ export function touchUser(user: User) {
       existing.updatedAt = new Date().toISOString();
     }
   });
+}
+
+function getSessionCookieOptions() {
+  return {
+    httpOnly: true,
+    sameSite: "lax" as const,
+    path: "/",
+  };
 }

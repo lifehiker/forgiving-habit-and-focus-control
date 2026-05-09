@@ -15,7 +15,7 @@ export async function POST(request: Request) {
     timezone: formData.get("timezone"),
     resetHour: formData.get("resetHour"),
     starterHabits: selectedNames,
-    customHabitName: formData.get("customHabitName"),
+    customHabitName: formData.get("customHabitName") ?? "",
   });
 
   if (!parsed.success) {

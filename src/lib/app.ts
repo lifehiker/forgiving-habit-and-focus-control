@@ -377,6 +377,18 @@ export function completeOnboarding(
     }>;
   },
 ) {
+  const data = readStore();
+  const subscription =
+    data.subscriptions.find((entry) => entry.userId === userId)?.plan ?? "free";
+  const existingHabitNames = new Set(
+    data.habits.filter((habit) => habit.userId === userId && !habit.isArchived).map((habit) => habit.name),
+  );
+  const requestedHabitNames = new Set(input.starterHabits.map((habit) => habit.name));
+
+  if (subscription === "free" && existingHabitNames.size + requestedHabitNames.size > 3) {
+    throw new Error("Free plan onboarding is limited to 3 active habits. Pick up to 3 to continue.");
+  }
+
   mutateStore((data) => {
     const user = data.users.find((entry) => entry.id === userId);
     if (!user) return;

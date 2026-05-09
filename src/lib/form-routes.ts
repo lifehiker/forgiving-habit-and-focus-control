@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 
-export function buildRedirect(request: Request, path: string) {
-  return NextResponse.redirect(new URL(path, request.url), { status: 303 });
+export function buildRedirect(_request: Request, path: string) {
+  return new NextResponse(null, {
+    status: 303,
+    headers: {
+      Location: path,
+    },
+  });
 }
 
 export function getReturnTo(formData: FormData, fallback: string) {

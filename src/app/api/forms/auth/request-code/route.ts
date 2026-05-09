@@ -1,5 +1,3 @@
-import { NextResponse } from "next/server";
-
 import { trackEvent } from "@/lib/analytics";
 import { sendLifecycleEmail } from "@/lib/email";
 import { buildRedirect } from "@/lib/form-routes";
@@ -12,7 +10,7 @@ export async function POST(request: Request) {
   const formData = await request.formData();
   const parsed = requestCodeSchema.safeParse({
     email: formData.get("email"),
-    name: formData.get("name"),
+    name: formData.get("name") ?? "",
   });
 
   if (!parsed.success) {
@@ -50,7 +48,5 @@ export async function POST(request: Request) {
     params.set("previewCode", code);
   }
 
-  return NextResponse.redirect(new URL(`/login?${params.toString()}`, request.url), {
-    status: 303,
-  });
+  return buildRedirect(request, `/login?${params.toString()}`);
 }

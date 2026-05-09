@@ -7,6 +7,7 @@ export async function POST(request: Request) {
   if (user) {
     trackEvent("logout", user.id);
   }
-  await clearSession();
-  return buildRedirect(request, "/");
+  const response = buildRedirect(request, "/");
+  await clearSession(response);
+  return response;
 }

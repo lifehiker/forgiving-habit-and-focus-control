@@ -4,34 +4,7 @@ import path from "node:path";
 import type { AppData } from "@/lib/types";
 
 function resolveDataDir() {
-  const configuredDir = process.env.APP_DATA_DIR;
-  if (configuredDir) {
-    return configuredDir;
-  }
-
-  const repoRootDataDir = path.join(
-    /* turbopackIgnore: true */ process.cwd(),
-    "..",
-    "..",
-    "data",
-  );
-  if (
-    process.cwd().includes(`${path.sep}.next${path.sep}standalone`) &&
-    fs.existsSync(repoRootDataDir)
-  ) {
-    return repoRootDataDir;
-  }
-
-  const cwdDataDir = path.join(/* turbopackIgnore: true */ process.cwd(), "data");
-  if (fs.existsSync(cwdDataDir)) {
-    return cwdDataDir;
-  }
-
-  if (fs.existsSync(repoRootDataDir)) {
-    return repoRootDataDir;
-  }
-
-  return cwdDataDir;
+  return process.env.APP_DATA_DIR || path.join(/* turbopackIgnore: true */ process.cwd(), "data");
 }
 
 const dataDir = resolveDataDir();

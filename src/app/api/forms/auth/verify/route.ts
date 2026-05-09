@@ -1,9 +1,8 @@
 import { revalidatePath } from "next/cache";
-import { NextResponse } from "next/server";
 
 import { maybeSendWelcomeEmail } from "@/lib/app";
 import { buildRedirect } from "@/lib/form-routes";
-import { createOrUpdateUserByEmail, setSession } from "@/lib/session";
+import { applySessionCookie, createOrUpdateUserByEmail, setSession } from "@/lib/session";
 import { readStore } from "@/lib/store";
 import { verifyCodeSchema } from "@/lib/validators";
 
@@ -32,12 +31,17 @@ export async function POST(request: Request) {
   }
 
   const user = createOrUpdateUserByEmail(email);
-  await setSession(user.id);
+  const token = await setSession(user.id);
   maybeSendWelcomeEmail({
     ...user,
     subscription: readStore().subscriptions.find((entry) => entry.userId === user.id)!,
   });
 
   revalidatePath("/");
-  return buildRedirect(request, user.onboardingCompleted ? "/dashboard" : "/onboarding");
+  const response = buildRedirect(
+    request,
+    user.onboardingCompleted ? "/dashboard" : "/onboarding",
+  );
+  await applySessionCookie(response, token);
+  return response;
 }
