@@ -10,25 +10,18 @@
       "onboardingCompleted": true,
       "allowEmergencyOverride": false,
       "createdAt": "2026-04-09T15:00:00.000Z",
-      "updatedAt": "2026-05-09T12:53:13.583Z",
-      "lastActiveAt": "2026-05-09T12:53:13.583Z"
+      "updatedAt": "2026-05-09T13:50:13.990Z",
+      "lastActiveAt": "2026-05-09T13:50:13.990Z"
     }
   ],
-  "sessions": [
-    {
-      "token": "sess_smoketest",
-      "userId": "user_demo",
-      "createdAt": "2026-05-09T12:53:26.762Z",
-      "expiresAt": "2026-05-16T12:53:26.762Z"
-    }
-  ],
+  "sessions": [],
   "loginCodes": [
     {
-      "id": "code_c7f45e340541",
+      "id": "code_fa9abc2a55ab",
       "email": "demo@forginghabit.local",
       "code": "111111",
-      "createdAt": "2026-05-09T12:53:13.583Z",
-      "expiresAt": "2026-05-16T12:53:13.583Z"
+      "createdAt": "2026-05-09T13:50:13.990Z",
+      "expiresAt": "2026-05-16T13:50:13.990Z"
     }
   ],
   "habits": [
@@ -68,7 +61,7 @@
   ],
   "habitCompletions": [
     {
-      "id": "completion_e5d49471a91f",
+      "id": "completion_5c8031a7f549",
       "habitId": "habit_shutdown",
       "userId": "user_demo",
       "completedOnDate": "2026-05-09",
@@ -76,7 +69,7 @@
       "createdAt": "2026-05-09T15:00:00.000Z"
     },
     {
-      "id": "completion_b93b2888a2f3",
+      "id": "completion_808c4581703b",
       "habitId": "habit_shutdown",
       "userId": "user_demo",
       "completedOnDate": "2026-05-08",
@@ -84,7 +77,7 @@
       "createdAt": "2026-05-08T15:00:00.000Z"
     },
     {
-      "id": "completion_9ba102395e8b",
+      "id": "completion_94465ed25e80",
       "habitId": "habit_shutdown",
       "userId": "user_demo",
       "completedOnDate": "2026-05-06",
@@ -92,7 +85,7 @@
       "createdAt": "2026-05-06T15:00:00.000Z"
     },
     {
-      "id": "completion_fd04aedf3313",
+      "id": "completion_6ae5bb373be3",
       "habitId": "habit_shutdown",
       "userId": "user_demo",
       "completedOnDate": "2026-05-05",
@@ -100,7 +93,7 @@
       "createdAt": "2026-05-05T15:00:00.000Z"
     },
     {
-      "id": "completion_fb0713d756c4",
+      "id": "completion_2b58252b43fa",
       "habitId": "habit_shutdown",
       "userId": "user_demo",
       "completedOnDate": "2026-05-03",
@@ -108,7 +101,7 @@
       "createdAt": "2026-05-03T15:00:00.000Z"
     },
     {
-      "id": "completion_2ba441aa7aef",
+      "id": "completion_4f3fb0b7a8b4",
       "habitId": "habit_walk",
       "userId": "user_demo",
       "completedOnDate": "2026-05-09",
@@ -116,7 +109,7 @@
       "createdAt": "2026-05-09T18:00:00.000Z"
     },
     {
-      "id": "completion_ae0f25f92292",
+      "id": "completion_b6a36bbebfc2",
       "habitId": "habit_walk",
       "userId": "user_demo",
       "completedOnDate": "2026-05-07",
@@ -124,7 +117,7 @@
       "createdAt": "2026-05-07T18:00:00.000Z"
     },
     {
-      "id": "completion_430113a33710",
+      "id": "completion_efa138ba3537",
       "habitId": "habit_walk",
       "userId": "user_demo",
       "completedOnDate": "2026-05-06",
@@ -132,7 +125,7 @@
       "createdAt": "2026-05-06T18:00:00.000Z"
     },
     {
-      "id": "completion_9496ce4cc93d",
+      "id": "completion_f4fe517773e4",
       "habitId": "habit_walk",
       "userId": "user_demo",
       "completedOnDate": "2026-05-04",
@@ -140,7 +133,7 @@
       "createdAt": "2026-05-04T18:00:00.000Z"
     },
     {
-      "id": "completion_0ae52aed84ff",
+      "id": "completion_f31d1a6f1abd",
       "habitId": "habit_review",
       "userId": "user_demo",
       "completedOnDate": "2026-05-07",
@@ -148,7 +141,7 @@
       "createdAt": "2026-05-07T20:00:00.000Z"
     },
     {
-      "id": "completion_4b51c80d0b71",
+      "id": "completion_834f40e43c86",
       "habitId": "habit_review",
       "userId": "user_demo",
       "completedOnDate": "2026-04-30",
@@ -163,13 +156,6 @@
       "userId": "user_demo",
       "lapseDate": "2026-05-08",
       "createdAt": "2026-05-08T12:00:00.000Z"
-    },
-    {
-      "id": "1f3bef1b-6d63-48ad-b4a7-84180d45a566",
-      "habitId": "habit_review",
-      "userId": "user_demo",
-      "lapseDate": "2026-05-03",
-      "createdAt": "2026-05-09T12:53:27.038Z"
     }
   ],
   "focusSessions": [
@@ -208,9 +194,9 @@
       "userId": "user_demo",
       "plan": "pro-yearly",
       "status": "active",
-      "currentPeriodEnd": "2026-11-05T12:53:13.583Z",
+      "currentPeriodEnd": "2026-11-05T13:50:13.990Z",
       "createdAt": "2026-04-25T15:00:00.000Z",
-      "updatedAt": "2026-05-09T12:53:13.583Z"
+      "updatedAt": "2026-05-09T13:50:13.990Z"
     }
   ],
   "extensionTokens": [
@@ -219,23 +205,23 @@
       "userId": "user_demo",
       "token": "ext_demo_token",
       "createdAt": "2026-05-08T15:00:00.000Z",
-      "lastUsedAt": "2026-05-09T12:53:26.891Z"
+      "lastUsedAt": "2026-05-09T13:50:40.028Z"
     }
   ],
   "analyticsEvents": [
     {
-      "id": "evt_753c1a7a6891",
+      "id": "evt_6e69ebd3285c",
       "userId": "user_demo",
       "name": "seed_demo_loaded",
       "metadata": {
         "source": "scripts/seed-demo.mjs"
       },
-      "createdAt": "2026-05-09T12:53:13.583Z"
+      "createdAt": "2026-05-09T13:50:13.990Z"
     }
   ],
   "emailLogs": [
     {
-      "id": "email_6dcbbaa570d9",
+      "id": "email_c142e782aaaa",
       "userId": "user_demo",
       "email": "demo@forginghabit.local",
       "type": "welcome",

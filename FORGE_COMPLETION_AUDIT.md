@@ -1,6 +1,6 @@
 # FORGE Completion Audit
 
-Last updated: 2026-05-09 (post-QA hardening)
+Last updated: 2026-05-09 (post-runtime verification)
 
 ## Foundation And Storage
 
@@ -56,10 +56,11 @@ Last updated: 2026-05-09 (post-QA hardening)
 - Production Docker config: [Dockerfile](/opt/forge-builds/forgiving-habit-and-focus-control/Dockerfile), [.dockerignore](/opt/forge-builds/forgiving-habit-and-focus-control/.dockerignore)
 - Environment template: [.env.example](/opt/forge-builds/forgiving-habit-and-focus-control/.env.example)
 - Demo seed tooling: [scripts/seed-demo.mjs](/opt/forge-builds/forgiving-habit-and-focus-control/scripts/seed-demo.mjs), [package.json](/opt/forge-builds/forgiving-habit-and-focus-control/package.json)
+- Verified runtime flows in dev: login verification, settings save, plan switching, blocklist add/remove, extension-token regeneration, restart logging, focus-session lifecycle, and extension-state sync via the live routes and server actions
 
 ## Intentionally Deferred External-Credential Items
 
 - Google OAuth remains credential-gated. The email-code login path keeps the app fully functional without it.
 - Stripe Checkout and customer-portal flows remain credential-gated. The billing page uses local plan switching so subscription gating still works without Stripe.
 - Resend-backed email delivery remains credential-gated. Preview email logging keeps login codes and lifecycle messaging functional without outbound email.
-- `docker build .` could not be completed here because Docker daemon access is blocked for the current user, even though Docker is installed.
+- `docker build .` was attempted here and failed because Docker daemon access is blocked for the current user, even though Docker is installed.
