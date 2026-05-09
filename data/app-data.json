@@ -1,0 +1,247 @@
+{
+  "users": [
+    {
+      "id": "user_demo",
+      "email": "demo@forginghabit.local",
+      "name": "Demo User",
+      "timezone": "America/New_York",
+      "resetHour": 5,
+      "rebuildGoal": "a calmer work rhythm",
+      "onboardingCompleted": true,
+      "allowEmergencyOverride": false,
+      "createdAt": "2026-04-09T15:00:00.000Z",
+      "updatedAt": "2026-05-09T12:53:13.583Z",
+      "lastActiveAt": "2026-05-09T12:53:13.583Z"
+    }
+  ],
+  "sessions": [
+    {
+      "token": "sess_smoketest",
+      "userId": "user_demo",
+      "createdAt": "2026-05-09T12:53:26.762Z",
+      "expiresAt": "2026-05-16T12:53:26.762Z"
+    }
+  ],
+  "loginCodes": [
+    {
+      "id": "code_c7f45e340541",
+      "email": "demo@forginghabit.local",
+      "code": "111111",
+      "createdAt": "2026-05-09T12:53:13.583Z",
+      "expiresAt": "2026-05-16T12:53:13.583Z"
+    }
+  ],
+  "habits": [
+    {
+      "id": "habit_shutdown",
+      "userId": "user_demo",
+      "name": "Shutdown ritual",
+      "slug": "shutdown-ritual",
+      "cadenceType": "daily",
+      "targetPerWeek": null,
+      "category": "Work",
+      "isArchived": false,
+      "createdAt": "2026-04-19T15:00:00.000Z"
+    },
+    {
+      "id": "habit_walk",
+      "userId": "user_demo",
+      "name": "Walk after lunch",
+      "slug": "walk-after-lunch",
+      "cadenceType": "daily",
+      "targetPerWeek": null,
+      "category": "Energy",
+      "isArchived": false,
+      "createdAt": "2026-04-19T15:00:00.000Z"
+    },
+    {
+      "id": "habit_review",
+      "userId": "user_demo",
+      "name": "Weekly review",
+      "slug": "weekly-review",
+      "cadenceType": "weekly",
+      "targetPerWeek": 2,
+      "category": "Planning",
+      "isArchived": false,
+      "createdAt": "2026-04-19T15:00:00.000Z"
+    }
+  ],
+  "habitCompletions": [
+    {
+      "id": "completion_e5d49471a91f",
+      "habitId": "habit_shutdown",
+      "userId": "user_demo",
+      "completedOnDate": "2026-05-09",
+      "source": "manual",
+      "createdAt": "2026-05-09T15:00:00.000Z"
+    },
+    {
+      "id": "completion_b93b2888a2f3",
+      "habitId": "habit_shutdown",
+      "userId": "user_demo",
+      "completedOnDate": "2026-05-08",
+      "source": "manual",
+      "createdAt": "2026-05-08T15:00:00.000Z"
+    },
+    {
+      "id": "completion_9ba102395e8b",
+      "habitId": "habit_shutdown",
+      "userId": "user_demo",
+      "completedOnDate": "2026-05-06",
+      "source": "manual",
+      "createdAt": "2026-05-06T15:00:00.000Z"
+    },
+    {
+      "id": "completion_fd04aedf3313",
+      "habitId": "habit_shutdown",
+      "userId": "user_demo",
+      "completedOnDate": "2026-05-05",
+      "source": "manual",
+      "createdAt": "2026-05-05T15:00:00.000Z"
+    },
+    {
+      "id": "completion_fb0713d756c4",
+      "habitId": "habit_shutdown",
+      "userId": "user_demo",
+      "completedOnDate": "2026-05-03",
+      "source": "manual",
+      "createdAt": "2026-05-03T15:00:00.000Z"
+    },
+    {
+      "id": "completion_2ba441aa7aef",
+      "habitId": "habit_walk",
+      "userId": "user_demo",
+      "completedOnDate": "2026-05-09",
+      "source": "manual",
+      "createdAt": "2026-05-09T18:00:00.000Z"
+    },
+    {
+      "id": "completion_ae0f25f92292",
+      "habitId": "habit_walk",
+      "userId": "user_demo",
+      "completedOnDate": "2026-05-07",
+      "source": "manual",
+      "createdAt": "2026-05-07T18:00:00.000Z"
+    },
+    {
+      "id": "completion_430113a33710",
+      "habitId": "habit_walk",
+      "userId": "user_demo",
+      "completedOnDate": "2026-05-06",
+      "source": "manual",
+      "createdAt": "2026-05-06T18:00:00.000Z"
+    },
+    {
+      "id": "completion_9496ce4cc93d",
+      "habitId": "habit_walk",
+      "userId": "user_demo",
+      "completedOnDate": "2026-05-04",
+      "source": "manual",
+      "createdAt": "2026-05-04T18:00:00.000Z"
+    },
+    {
+      "id": "completion_0ae52aed84ff",
+      "habitId": "habit_review",
+      "userId": "user_demo",
+      "completedOnDate": "2026-05-07",
+      "source": "manual",
+      "createdAt": "2026-05-07T20:00:00.000Z"
+    },
+    {
+      "id": "completion_4b51c80d0b71",
+      "habitId": "habit_review",
+      "userId": "user_demo",
+      "completedOnDate": "2026-04-30",
+      "source": "manual",
+      "createdAt": "2026-04-30T20:00:00.000Z"
+    }
+  ],
+  "habitLapses": [
+    {
+      "id": "lapse_walk_recent",
+      "habitId": "habit_walk",
+      "userId": "user_demo",
+      "lapseDate": "2026-05-08",
+      "createdAt": "2026-05-08T12:00:00.000Z"
+    },
+    {
+      "id": "1f3bef1b-6d63-48ad-b4a7-84180d45a566",
+      "habitId": "habit_review",
+      "userId": "user_demo",
+      "lapseDate": "2026-05-03",
+      "createdAt": "2026-05-09T12:53:27.038Z"
+    }
+  ],
+  "focusSessions": [
+    {
+      "id": "focus_recent_complete",
+      "userId": "user_demo",
+      "habitId": "habit_shutdown",
+      "label": "Write project brief",
+      "durationMinutes": 25,
+      "startedAt": "2026-05-07T14:00:00.000Z",
+      "endsAt": "2026-05-07T14:00:00.000Z",
+      "completedAt": "2026-05-07T15:00:00.000Z",
+      "status": "completed",
+      "allowOverride": false
+    }
+  ],
+  "blockedDomains": [
+    {
+      "id": "domain_reddit",
+      "userId": "user_demo",
+      "domain": "reddit.com",
+      "isActive": true,
+      "createdAt": "2026-05-02T15:00:00.000Z"
+    },
+    {
+      "id": "domain_youtube",
+      "userId": "user_demo",
+      "domain": "youtube.com",
+      "isActive": true,
+      "createdAt": "2026-05-02T15:00:00.000Z"
+    }
+  ],
+  "subscriptions": [
+    {
+      "id": "sub_demo",
+      "userId": "user_demo",
+      "plan": "pro-yearly",
+      "status": "active",
+      "currentPeriodEnd": "2026-11-05T12:53:13.583Z",
+      "createdAt": "2026-04-25T15:00:00.000Z",
+      "updatedAt": "2026-05-09T12:53:13.583Z"
+    }
+  ],
+  "extensionTokens": [
+    {
+      "id": "token_demo",
+      "userId": "user_demo",
+      "token": "ext_demo_token",
+      "createdAt": "2026-05-08T15:00:00.000Z",
+      "lastUsedAt": "2026-05-09T12:53:26.891Z"
+    }
+  ],
+  "analyticsEvents": [
+    {
+      "id": "evt_753c1a7a6891",
+      "userId": "user_demo",
+      "name": "seed_demo_loaded",
+      "metadata": {
+        "source": "scripts/seed-demo.mjs"
+      },
+      "createdAt": "2026-05-09T12:53:13.583Z"
+    }
+  ],
+  "emailLogs": [
+    {
+      "id": "email_6dcbbaa570d9",
+      "userId": "user_demo",
+      "email": "demo@forginghabit.local",
+      "type": "welcome",
+      "status": "preview",
+      "preview": "Welcome back to your habits, Demo User. Start small and restart fast.",
+      "createdAt": "2026-04-25T15:00:00.000Z"
+    }
+  ]
+}

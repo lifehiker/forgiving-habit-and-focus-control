@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Forging Habit</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 16px;
+        width: 320px;
+        font-family: Georgia, serif;
+        background: #f8f3ea;
+        color: #182119;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 8px;
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      input {
+        width: 100%;
+        border: 1px solid rgba(24, 33, 25, 0.15);
+        border-radius: 12px;
+        padding: 10px 12px;
+        margin-bottom: 14px;
+      }
+
+      button {
+        width: 100%;
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 14px;
+        background: #1f6a52;
+        color: #fff;
+        cursor: pointer;
+      }
+
+      p {
+        font-size: 12px;
+        line-height: 1.5;
+        color: #5a6659;
+      }
+    </style>
+  </head>
+  <body>
+    <label for="baseUrl">App URL</label>
+    <input id="baseUrl" placeholder="http://localhost:3000" />
+
+    <label for="token">Extension token</label>
+    <input id="token" placeholder="ext_..." />
+
+    <button id="save">Save connection</button>
+    <p id="status"></p>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

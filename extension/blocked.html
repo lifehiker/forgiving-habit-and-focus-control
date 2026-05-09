@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Focus session active</title>
+    <style>
+      body {
+        min-height: 100vh;
+        margin: 0;
+        display: grid;
+        place-items: center;
+        background: linear-gradient(135deg, #17382f, #265d49 55%, #f08f56);
+        color: #fff8f1;
+        font-family: Georgia, serif;
+      }
+
+      main {
+        width: min(560px, calc(100vw - 32px));
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 28px;
+        padding: 28px;
+        backdrop-filter: blur(14px);
+      }
+
+      button {
+        margin-top: 20px;
+        border: 0;
+        border-radius: 999px;
+        padding: 12px 18px;
+        background: #ffffff;
+        color: #17382f;
+        cursor: pointer;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p id="eyebrow">Commitment mode</p>
+      <h1 id="title">This site is blocked right now.</h1>
+      <p id="detail"></p>
+      <button id="override" class="hidden" type="button">Emergency override</button>
+    </main>
+    <script src="blocked.js"></script>
+  </body>
+</html>

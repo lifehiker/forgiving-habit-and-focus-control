@@ -1,0 +1,158 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f5f0e6;
+  --foreground: #182119;
+  --muted: #ede5d7;
+  --muted-foreground: #5a6659;
+  --card: rgba(255, 252, 246, 0.82);
+  --card-strong: #fff8ee;
+  --border: rgba(24, 33, 25, 0.12);
+  --line: rgba(24, 33, 25, 0.08);
+  --primary: #1f6a52;
+  --primary-strong: #154938;
+  --primary-soft: #d7eadf;
+  --accent: #f28c52;
+  --accent-soft: #fde8da;
+  --danger: #b04e2d;
+  --shadow: 0 24px 80px rgba(33, 29, 17, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  background:
+    radial-gradient(circle at top left, rgba(242, 140, 82, 0.18), transparent 24rem),
+    radial-gradient(circle at top right, rgba(31, 106, 82, 0.12), transparent 28rem),
+    linear-gradient(180deg, #f8f3ea 0%, #f3edde 100%);
+}
+
+body {
+  min-height: 100vh;
+  background: transparent;
+  color: var(--foreground);
+  font-family:
+    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino,
+    "URW Palladio L", Georgia, serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.shell {
+  width: min(1180px, calc(100vw - 2rem));
+  margin: 0 auto;
+}
+
+.glass {
+  background: var(--card);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+  box-shadow: var(--shadow);
+}
+
+.eyebrow {
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+.button-primary,
+.button-secondary,
+.button-ghost,
+.button-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  padding: 0.9rem 1.2rem;
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    opacity 160ms ease;
+}
+
+.button-primary {
+  background: var(--primary);
+  color: #f8f5ef;
+}
+
+.button-primary:hover {
+  background: var(--primary-strong);
+}
+
+.button-secondary {
+  background: var(--card-strong);
+  border: 1px solid var(--border);
+}
+
+.button-ghost {
+  background: transparent;
+  border: 1px solid var(--line);
+}
+
+.button-danger {
+  background: var(--danger);
+  color: #fff7f1;
+}
+
+.field,
+.select,
+.textarea {
+  width: 100%;
+  border-radius: 1.2rem;
+  border: 1px solid var(--border);
+  background: rgba(255, 252, 247, 0.9);
+  padding: 0.9rem 1rem;
+  color: var(--foreground);
+  outline: none;
+}
+
+.field:focus,
+.select:focus,
+.textarea:focus {
+  border-color: rgba(31, 106, 82, 0.5);
+  box-shadow: 0 0 0 3px rgba(31, 106, 82, 0.12);
+}
+
+.card-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.hero-noise::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.06)),
+    radial-gradient(circle at 1px 1px, rgba(24, 33, 25, 0.06) 1px, transparent 0);
+  background-size: auto, 18px 18px;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.prose-copy p {
+  color: var(--muted-foreground);
+  line-height: 1.75;
+}
+
+.prose-copy h2,
+.prose-copy h3 {
+  margin-top: 1.7rem;
+  margin-bottom: 0.75rem;
+}
