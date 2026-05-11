@@ -1,5 +1,16 @@
 import { z } from "zod";
 
+const optionalNumberFromForm = () =>
+  z.preprocess(
+    (value) => {
+      if (value === null || value === undefined || value === "") {
+        return undefined;
+      }
+      return value;
+    },
+    z.coerce.number().optional(),
+  );
+
 export const requestCodeSchema = z.object({
   email: z.string().email(),
   name: z.string().trim().min(2).max(50).optional().or(z.literal("")),
@@ -21,7 +32,10 @@ export const onboardingSchema = z.object({
 export const habitSchema = z.object({
   name: z.string().trim().min(2).max(60),
   cadenceType: z.enum(["daily", "weekly"]),
-  targetPerWeek: z.coerce.number().min(1).max(7).optional(),
+  targetPerWeek: optionalNumberFromForm().refine(
+    (value) => value === undefined || (value >= 1 && value <= 7),
+    "Weekly target must be between 1 and 7.",
+  ),
   category: z.string().trim().min(2).max(30),
 });
 

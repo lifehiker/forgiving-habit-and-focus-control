@@ -29,5 +29,5 @@ The app runs locally without external credentials. The following items are only 
 
 ## Local environment note
 
-- The checked-in `Dockerfile` has been corrected so it no longer tries to copy a nonexistent `public/` directory.
+- The checked-in `Dockerfile` already matches this repo’s contents, including the existing `public/` directory and Next standalone runtime output.
 - Docker is installed here, but this session cannot access the Docker daemon socket, so `docker build .` could not be run to completion from this environment.
