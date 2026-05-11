@@ -3,12 +3,19 @@ import path from "node:path";
 
 import type { AppData } from "@/lib/types";
 
-function resolveDataDir() {
-  return process.env.APP_DATA_DIR || path.join(/* turbopackIgnore: true */ process.cwd(), "data");
+function resolveDataFile() {
+  const customDataDir = process.env.APP_DATA_DIR;
+
+  if (customDataDir) {
+    return path.join(customDataDir, "app-data.json");
+  }
+
+  // Keep the path statically scoped so standalone tracing only includes `/data`.
+  return path.join(process.cwd(), "data", "app-data.json");
 }
 
-const dataDir = resolveDataDir();
-const dataFile = path.join(dataDir, "app-data.json");
+const dataFile = resolveDataFile();
+const dataDir = path.dirname(dataFile);
 
 const emptyData: AppData = {
   users: [],

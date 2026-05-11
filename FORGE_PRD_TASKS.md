@@ -1,6 +1,6 @@
 # FORGE PRD Tasks
 
-Last updated: 2026-05-09 (deployment repair, auth cookie fix, stale-action guard, and final QA verification)
+Last updated: 2026-05-11 (fresh build verification, dev/standalone smoke tests, and Dockerfile copy-path fix)
 
 ## Phase 1: Foundation
 
@@ -118,14 +118,18 @@ Last updated: 2026-05-09 (deployment repair, auth cookie fix, stale-action guard
 ## Remaining notes
 
 - Final QA fixes completed after route verification:
+  - Removed the invalid `public/` copy from `Dockerfile` because this repo does not ship a `public/` directory; the container build path now only copies directories that actually exist.
   - Replaced user-facing Server Action form submissions with route-handler POST endpoints after reproducing the deployment-time action lookup failures locally.
   - Removed the now-unused `src/lib/actions/*` Server Action modules so the shipped app only uses the stable POST mutation routes.
   - Added a stable `NEXT_SERVER_ACTIONS_ENCRYPTION_KEY` and optional `deploymentId` wiring for self-hosted Next.js deployment safety.
   - Added a Next 16 `proxy.ts` guard that converts stale `Next-Action` POSTs into clean page reload redirects, preventing production logs from filling with missing Server Action lookup errors during post-deploy skew.
   - Corrected relative form redirects so standalone/proxied deployments do not leak `0.0.0.0` in `Location` headers.
   - Corrected local-vs-standalone file-store path resolution so production-style standalone runs and repo-root runs use the intended persistent data directory.
+  - Tightened the file-store path to a statically scoped `/data/app-data.json` fallback so Turbopack standalone tracing no longer warns about tracing the whole project.
   - Fixed auth redirect persistence by attaching the session cookie to the actual verify/logout redirect responses instead of relying on ambient cookie mutation alone.
   - Enforced the free-plan 3-habit limit during onboarding so signup no longer bypasses subscription gating.
   - Hardened auth request-code and onboarding route handlers so missing optional text inputs no longer fail validation on non-browser or proxied submissions.
   - Re-verified live flows in standalone mode: request-code auth, logout, onboarding, dashboard completion, focus start/finish, linked-habit completion, billing switch, settings save, extension token generation, extension state fetch, blocklist add/remove, and stale-action request recovery.
+  - Re-ran clean-room smoke tests against a fresh `APP_DATA_DIR` to verify auth, onboarding, free-plan gating, Pro upgrade, habit completion, linked focus completion, extension token/state sync, blocklist mutation, primary route responses, and stale `Next-Action` redirect behavior end-to-end.
+  - Re-verified on 2026-05-11 that `npm run build`, `npm run lint`, `npm run dev`, and `npm run start` all succeed after the Dockerfile fix.
 - `docker build .` was attempted and failed because Docker daemon access to `/var/run/docker.sock` is blocked for the current user in this environment.
