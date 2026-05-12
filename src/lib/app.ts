@@ -180,6 +180,13 @@ export function createHabit(user: AppUser, input: {
 }
 
 export function completeHabit(user: AppUser, habitId: string, source: "manual" | "focus-session") {
+  const habit = readStore().habits.find(
+    (entry) => entry.id === habitId && entry.userId === user.id && !entry.isArchived,
+  );
+  if (!habit) {
+    throw new Error("That habit could not be found.");
+  }
+
   const today = getHabitDayKey(new Date(), user.timezone, user.resetHour);
   mutateStore((data) => {
     const exists = data.habitCompletions.some(
@@ -214,6 +221,14 @@ export function archiveHabit(userId: string, habitId: string) {
 }
 
 export function restartHabit(userId: string, habitId: string, restartReason: RestartReason) {
+  const data = readStore();
+  const habit = data.habits.find(
+    (entry) => entry.id === habitId && entry.userId === userId && !entry.isArchived,
+  );
+  if (!habit) {
+    throw new Error("That habit could not be found.");
+  }
+
   mutateStore((data) => {
     const latestOpenLapse = [...data.habitLapses]
       .reverse()
@@ -221,10 +236,11 @@ export function restartHabit(userId: string, habitId: string, restartReason: Res
         (lapse) =>
           lapse.userId === userId && lapse.habitId === habitId && !lapse.restartDate,
       );
-    if (latestOpenLapse) {
-      latestOpenLapse.restartDate = new Date().toISOString();
-      latestOpenLapse.restartReason = restartReason;
+    if (!latestOpenLapse) {
+      throw new Error("There is no open lapse to restart for that habit.");
     }
+    latestOpenLapse.restartDate = new Date().toISOString();
+    latestOpenLapse.restartReason = restartReason;
     markUserActiveInStore(data, userId);
   });
   trackEvent("restart_clicked", userId, { restartReason });
@@ -265,16 +281,26 @@ export function startFocusSession(
 
 export function finishFocusSession(user: AppUser, sessionId: string) {
   let linkedHabitId: string | undefined;
+  let completed = false;
   mutateStore((data) => {
     const session = data.focusSessions.find(
       (entry) => entry.id === sessionId && entry.userId === user.id,
     );
-    if (!session) return;
+    if (!session) {
+      throw new Error("That focus session could not be found.");
+    }
+    if (session.status !== "active") {
+      throw new Error("That focus session is no longer active.");
+    }
     session.status = "completed";
     session.completedAt = new Date().toISOString();
     linkedHabitId = session.habitId;
+    completed = true;
     markUserActiveInStore(data, user.id);
   });
+  if (!completed) {
+    throw new Error("Unable to complete that focus session.");
+  }
   if (linkedHabitId) {
     completeHabit(user, linkedHabitId, "focus-session");
   }

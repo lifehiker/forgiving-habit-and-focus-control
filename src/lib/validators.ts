@@ -50,10 +50,18 @@ export const restartSchema = z.object({
   ]),
 });
 
+export const habitActionSchema = z.object({
+  habitId: z.string().trim().min(1),
+});
+
 export const focusSchema = z.object({
   label: z.string().trim().min(2).max(60),
   durationMinutes: z.coerce.number().min(15).max(180),
   habitId: z.string().optional(),
+});
+
+export const focusCompletionSchema = z.object({
+  sessionId: z.string().trim().min(1),
 });
 
 export const blocklistSchema = z.object({

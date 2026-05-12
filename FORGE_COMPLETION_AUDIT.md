@@ -1,6 +1,6 @@
 # FORGE Completion Audit
 
-Last updated: 2026-05-11 (fresh build verification, dev/standalone smoke tests, and deployment/docs audit)
+Last updated: 2026-05-12 (fresh build verification, dev/standalone smoke tests, mutation hardening, and deployment/docs audit)
 
 ## Foundation And Storage
 
@@ -22,6 +22,7 @@ Last updated: 2026-05-11 (fresh build verification, dev/standalone smoke tests, 
 ## Recovery-First Habits
 
 - Habit CRUD, completion, restart logging, limits, and activity updates: [src/lib/app.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/app.ts), [src/app/api/forms/habits/route.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/api/forms/habits/route.ts), [src/lib/validators.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/validators.ts)
+- Invalid-ID protection for habit completion/archive/restart requests so malformed submissions cannot write corrupt completions: [src/app/api/forms/habits/route.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/api/forms/habits/route.ts), [src/lib/app.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/app.ts), [src/lib/validators.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/validators.ts)
 - FormData-safe optional numeric validation for habit creation: [src/lib/validators.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/validators.ts)
 - Momentum summary and lapse detection: [src/lib/habits/momentum.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/habits/momentum.ts)
 - Dashboard and habits pages: [src/app/(app)/dashboard/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(app)/dashboard/page.tsx), [src/app/(app)/habits/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(app)/habits/page.tsx)
@@ -31,6 +32,7 @@ Last updated: 2026-05-11 (fresh build verification, dev/standalone smoke tests, 
 ## Focus Sessions And Blocking
 
 - Focus session lifecycle, linked habits, and plan gating: [src/lib/app.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/app.ts), [src/app/api/forms/focus/route.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/api/forms/focus/route.ts)
+- Invalid-ID and status protection for focus-session completion requests: [src/app/api/forms/focus/route.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/api/forms/focus/route.ts), [src/lib/app.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/app.ts), [src/lib/validators.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/validators.ts)
 - Focus page and countdown component: [src/app/(app)/focus/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(app)/focus/page.tsx), [src/components/focus/focus-countdown.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/components/focus/focus-countdown.tsx)
 - Graceful focus gating and countdown refresh polish: [src/app/api/forms/focus/route.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/api/forms/focus/route.ts), [src/app/(app)/focus/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(app)/focus/page.tsx), [src/components/focus/focus-countdown.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/components/focus/focus-countdown.tsx)
 - Blocklist management and extension token UI: [src/app/(app)/settings/blocklist/page.tsx](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/(app)/settings/blocklist/page.tsx), [src/app/api/forms/blocklist/route.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/api/forms/blocklist/route.ts), [src/lib/app.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/app.ts)
@@ -60,13 +62,14 @@ Last updated: 2026-05-11 (fresh build verification, dev/standalone smoke tests, 
 
 - Standalone output config: [next.config.ts](/opt/forge-builds/forgiving-habit-and-focus-control/next.config.ts)
 - Production Docker config and self-hosted action-skew hardening: [Dockerfile](/opt/forge-builds/forgiving-habit-and-focus-control/Dockerfile), [next.config.ts](/opt/forge-builds/forgiving-habit-and-focus-control/next.config.ts), [src/proxy.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/proxy.ts), [.env.example](/opt/forge-builds/forgiving-habit-and-focus-control/.env.example), [.dockerignore](/opt/forge-builds/forgiving-habit-and-focus-control/.dockerignore)
+- Docker runtime now explicitly packages the local data store, sets `APP_DATA_DIR=/app/data`, and ensures container write ownership for the standalone app user: [Dockerfile](/opt/forge-builds/forgiving-habit-and-focus-control/Dockerfile)
 - Docker runtime packaging aligned to the real repo contents, including the existing `public/` directory and standalone output: [Dockerfile](/opt/forge-builds/forgiving-habit-and-focus-control/Dockerfile)
 - Relative POST redirect handling for reverse-proxied standalone deploys: [src/lib/form-routes.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/form-routes.ts), [src/app/api/forms/auth/request-code/route.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/app/api/forms/auth/request-code/route.ts)
 - Stable standalone/local data-store resolution and statically scoped standalone tracing: [src/lib/store.ts](/opt/forge-builds/forgiving-habit-and-focus-control/src/lib/store.ts)
 - Environment template: [.env.example](/opt/forge-builds/forgiving-habit-and-focus-control/.env.example)
 - Demo seed tooling: [scripts/seed-demo.mjs](/opt/forge-builds/forgiving-habit-and-focus-control/scripts/seed-demo.mjs), [package.json](/opt/forge-builds/forgiving-habit-and-focus-control/package.json)
 - Verified runtime flows in standalone production mode: request-code auth, login verification, logout, onboarding error/success paths, settings save, plan switching, blocklist add/remove, extension-token regeneration, restart logging, focus-session lifecycle, linked-habit completion, extension-state sync via the live form routes and APIs, clean-room `APP_DATA_DIR` smoke tests, and stale `Next-Action` POST recovery via proxy redirect
-- Verified on 2026-05-11 that `npm run build`, `npm run lint`, `npm run dev`, and `npm run start` pass, and that a clean-room standalone smoke test succeeds across auth, onboarding, free-plan limits, Pro upgrade, linked focus completion, settings save, and extension state sync
+- Verified on 2026-05-12 that `npm run build`, `npm run lint`, `npm run dev`, and `npm run start` pass, and that clean-room standalone smoke tests succeed across auth, onboarding, free-plan limits, valid/invalid habit completion handling, Pro upgrade, focus start, settings save, blocklist/token flows, and extension state sync
 
 ## Intentionally Deferred External-Credential Items
 

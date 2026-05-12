@@ -30,4 +30,5 @@ The app runs locally without external credentials. The following items are only 
 ## Local environment note
 
 - The checked-in `Dockerfile` already matches this repo’s contents, including the existing `public/` directory and Next standalone runtime output.
+- The container runtime is configured to persist local fallback app state at `/app/data` by default via `APP_DATA_DIR=/app/data`.
 - Docker is installed here, but this session cannot access the Docker daemon socket, so `docker build .` could not be run to completion from this environment.

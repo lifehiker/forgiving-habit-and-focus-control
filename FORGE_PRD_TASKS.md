@@ -1,6 +1,6 @@
 # FORGE PRD Tasks
 
-Last updated: 2026-05-11 (fresh build verification, dev/standalone smoke tests, and deployment/docs audit)
+Last updated: 2026-05-12 (fresh build verification, dev/standalone smoke tests, mutation hardening, and deployment/docs audit)
 
 ## Phase 1: Foundation
 
@@ -118,6 +118,8 @@ Last updated: 2026-05-11 (fresh build verification, dev/standalone smoke tests, 
 ## Remaining notes
 
 - Final QA fixes completed after route verification:
+  - Hardened mutation validation so invalid or empty habit/session IDs are rejected cleanly instead of writing corrupt local records during form/API requests.
+  - Hardened the Docker runtime by explicitly packaging and owning the local `/app/data` store and setting `APP_DATA_DIR=/app/data` for standalone container runs.
   - Re-verified the production `Dockerfile` against the real repo contents; `public/` does exist here, so keeping the `COPY --from=builder /app/public ./public` step is correct and deployment-safe for this project.
   - Replaced user-facing Server Action form submissions with route-handler POST endpoints after reproducing the deployment-time action lookup failures locally.
   - Removed the now-unused `src/lib/actions/*` Server Action modules so the shipped app only uses the stable POST mutation routes.
@@ -132,5 +134,5 @@ Last updated: 2026-05-11 (fresh build verification, dev/standalone smoke tests, 
   - Fixed habit creation validation so optional weekly-target form fields no longer fail on empty `FormData` values during normal daily-habit creation.
   - Re-verified live flows in standalone mode: request-code auth, logout, onboarding, dashboard completion, focus start/finish, linked-habit completion, billing switch, settings save, extension token generation, extension state fetch, blocklist add/remove, and stale-action request recovery.
   - Re-ran clean-room smoke tests against a fresh `APP_DATA_DIR` to verify auth, onboarding, free-plan gating, Pro upgrade, habit completion, linked focus completion, extension token/state sync, blocklist mutation, primary route responses, and stale `Next-Action` redirect behavior end-to-end.
-  - Re-verified on 2026-05-11 that `npm run build`, `npm run lint`, `npm run dev`, and `npm run start` all succeed, and that a clean-room standalone run with `APP_DATA_DIR=/tmp/fhfc-smoke` passes auth, onboarding, gating, billing, focus, settings, and extension-state smoke tests.
+  - Re-verified on 2026-05-12 that `npm run build`, `npm run lint`, `npm run dev`, and `npm run start` all succeed, and that clean-room standalone runs pass auth, onboarding, free-plan validation, valid/invalid habit completion handling, billing, focus, settings, blocklist, and extension-state smoke tests.
 - `docker build .` was attempted and failed because Docker daemon access to `/var/run/docker.sock` is blocked for the current user in this environment.

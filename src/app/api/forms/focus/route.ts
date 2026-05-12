@@ -3,7 +3,7 @@ import { revalidatePath } from "next/cache";
 import { finishFocusSession, startFocusSession } from "@/lib/app";
 import { buildRedirect } from "@/lib/form-routes";
 import { requireUser } from "@/lib/session";
-import { focusSchema } from "@/lib/validators";
+import { focusCompletionSchema, focusSchema } from "@/lib/validators";
 
 export async function POST(request: Request) {
   const user = await requireUser();
@@ -29,8 +29,14 @@ export async function POST(request: Request) {
       return buildRedirect(request, `/focus?error=${encodeURIComponent(message)}`);
     }
   } else if (intent === "complete") {
+    const parsed = focusCompletionSchema.safeParse({
+      sessionId: formData.get("sessionId"),
+    });
+    if (!parsed.success) {
+      return buildRedirect(request, "/focus?error=That%20focus%20session%20request%20was%20invalid.");
+    }
     try {
-      finishFocusSession(user, String(formData.get("sessionId")));
+      finishFocusSession(user, parsed.data.sessionId);
     } catch (error) {
       const message =
         error instanceof Error ? error.message : "Unable to complete that focus session.";
