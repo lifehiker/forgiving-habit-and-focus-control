@@ -2,6 +2,8 @@ import Link from "next/link";
 
 import { buildMetadata } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = buildMetadata({
   title: "Forgiving Habit Tracker + Focus Session Blocker",
   path: "/",
