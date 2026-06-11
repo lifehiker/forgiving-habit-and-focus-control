@@ -2,8 +2,6 @@ import { getSeoLandingPage } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
 import { SeoLandingPageView } from "@/app/(marketing)/_components/seo-landing-page-view";
 
-export const dynamic = "force-dynamic";
-
 const page = getSeoLandingPage("focus-session-app")!;
 export const metadata = buildMetadata({
   title: page.title,
