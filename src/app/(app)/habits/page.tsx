@@ -2,6 +2,8 @@ import { getTodayHabitStatus } from "@/lib/app";
 import { requireUser } from "@/lib/session";
 import { buildMetadata } from "@/lib/seo";
 
+export const dynamic = "force-dynamic";
+
 export const metadata = buildMetadata({
   title: "Habits",
   path: "/habits",
